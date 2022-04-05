@@ -6,28 +6,24 @@
         <strong style="margin-left: 5px;">bookStore</strong>
       </a>
       <nav class="nav_header">
-        <a class="me-3 py-2 text-black text-decoration-none" href="{{route('home')}}">home</a>
-        <a class="me-3 py-2 text-black text-decoration-none" href="{{route('books')}}">books</a>
-        @can('admin')
-          <a class="me-3 py-2 text-black text-decoration-none" href="">заявки</a>
-        @endcan
+        <a class="me-3 py-2 text-black text-decoration-none" href="{{route('home')}}">Главная страница</a>
+        <a class="me-3 py-2 text-black text-decoration-none" href="{{route('books')}}">Книги</a>
       </nav>
 
       @if (Auth::check())
       <div class="">
           <a href="{{route('userpage')}}">
-            <span>{{ Auth::user()->login }}</span>
+            <span>{{Auth::user()->login}}</span>
           </a>
-          <a href="{{route('cart')}}" class="mr-5 img_cart">
+          <a href="{{route('cart')}}" class="me-2 ms-1 img_cart">
             <img src="/img/icons/bag.png" alt="cart">
-            Shopping bag
           </a>
-          <a href="{{ route('user.logout') }}" class="btn btn-outline-dark me-2">Logout</a>
+          <a href="{{ route('user.logout') }}" class="btn btn-outline-dark me-2">Выход</a>
       </div>
       @else
       <div class="registr_btn">
-          <a href="{{route('user.login')}}" class="btn btn_1 me-2">log in</a>
-          <a href="{{route('user.signup')}}"  class="btn btn_2 me-2">sign up</a>
+          <a href="{{route('user.login')}}" class="btn btn_1 me-2">Вход</a>
+          <a href="{{route('user.signup')}}"  class="btn btn_2 me-2">Регистрация</a>
       </div>
       @endif
     </div>

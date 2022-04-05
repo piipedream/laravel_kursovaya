@@ -13,7 +13,7 @@ class AddBookRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,14 +24,14 @@ class AddBookRequest extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required|min:5|max:50',
-          'author' => 'required|min:5|max:50',
-          'description' => 'required|min:15|max:800',
+          'title' => 'required|min:5|max:100',
+          'author' => 'required|min:5|max:100',
+          'description' => 'required|min:15|max:2000',
           'genre' => 'required|min:5|max:50',
           'country' => 'required|min:5|max:50',
           'pages' => 'required',
-          'price' => 'required|min:5|max:150',
-          'Image' => 'required|mimes:png,jpg,jpeg,bmp|max:10240'
+          'price' => 'required',
+          'image' => 'required|mimes:png,jpg,jpeg,bmp|max:10240'
         ];
     }
 }

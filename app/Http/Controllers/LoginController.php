@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function login(Request $request){
       if(Auth::check()){
-        return redirect()->to(route('user.userpage'));
+        return redirect()->to(route('userpage'));
       }
 
       $formFields = $request->only([
@@ -19,7 +19,7 @@ class LoginController extends Controller
       ]);
 
       if(Auth::attempt($formFields)){
-        return redirect()->intended(route('user.userpage'));
+        return redirect()->intended(route('userpage'));
       }
 
       return redirect()->to(route('user.login'))->withErrors([

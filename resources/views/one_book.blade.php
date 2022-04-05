@@ -1,64 +1,28 @@
 @extends('layouts.app')
 
-@section('title-block')One book @endsection
+@section('title-block'){{$data->title}} - {{$data->author}} @endsection
 
 @section('content')
 
-<div class="books_img_bg">
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <p>Something short and leading about</p>
-        <h1>Book Store Online</h1>
-      </div>
-    </div>
-  </section>
-</div>
-
 <div class="container">
-  <!-- <div class="nav_bar mb-5">
-    <div class="nav_bar_block favorites">
-      <a href="#">
-        <span>
-          <img src="/img/icons/heart.png" alt="heart">
-          <br>
-          Favorites
-        </span>
-      </a>
-    </div>
-
-    <div class="nav_bar_block shopping_bag">
-      <a href="{{route('cart')}}">
-        <span>
-          <img src="/img/icons/bag.png" alt="shopping_bag">
-          <br>
-          Shopping Bag
-        </span>
-      </a>
-    </div>
-
-    <div class="nav_bar_block avatar">
-      <a href="{{route('userpage')}}">
-        <span>
-          <img src="/img/icons/avatar.png" alt="avatar">
-          <br>
-          User page
-        </span>
-      </a>
-    </div>
-  </div> -->
-
-  <div class="one_book mb-5">
+  <div class="container parent_form_book">
+    @if(session('success'))
+      <div class="alert alert-success">
+        {{session('success')}}
+      </div>
+    @endif
+  </div>
+  <div class="one_book mt-5 mb-5">
     <div class="oneBook_img">
-      <img src="/img/books/book1.jpeg" alt="book">
+      <img src="{{asset("storage/image/$data->image")}}" alt="book">
     </div>
 
     <div class="oneBook_info">
       <div class="name_book">
-        <h1>Благословение небожителей. Том 1</h1>
-        <p>Мосян Тунсю</p>
+        <h1>{{$data->title}}</h1>
+        <p>{{$data->author}}</p>
       </div>
-      <p class="one_book_price">990 руб.</p>
+      <p class="one_book_price">{{$data->price}} руб.</p>
       <div class="oneBook_btn">
         <a href="#">
           <button type="submit" class="btn btn-dark">В корзину</button>
@@ -67,22 +31,25 @@
           &#9825;
         </a>
       </div>
-
+      @can('admin')
+      <div class="oneBook_btn">
+        <a href="{{route('edit_book', $data->id)}}" class="edit_one_book">
+          <button type="submit" class="btn btn-outline-dark">Редактировать</button>
+        </a>
+        <a href="{{route('delete_book', $data->id)}}">
+          <button type="submit" class="btn btn-outline-dark">Удалить</button>
+        </a>
+      </div>
+      @endcan
       <div class="book_description">
         <p>Аннотация</p>
-        <p>Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-          in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        </p>
+        <p>{{$data->description}}</p>
         <div class="book_inf_footer">
-          <span>Жанр: </span>
+          <span>Жанр: {{$data->genre}}</span>
           <br>
-          <span>Страна: </span>
+          <span>Страна: {{$data->country}}</span>
           <br>
-          <span>Количество страниц: </span>
+          <span>Количество страниц: {{$data->pages}}</span>
         </div>
       </div>
     </div>

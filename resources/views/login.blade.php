@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title-block')Log in @endsection
+@section('title-block')Вход @endsection
 
 @section('content')
 <div class="parent_form container">
@@ -8,7 +8,7 @@
 <form action="{{route('user.login')}}" method="post">
     @csrf
 
-    <h3 class="title_login">Login</h3>
+    <h3 class="title_login">Вход</h3>
     <div class="form-group mt-3">
         <label for="email" class="mb-2">Email <span class="required">*</span></label>
         <input type="text" name="email" id="email" class="form-control">
@@ -27,7 +27,7 @@
 
     <div class="btn_login d-flex align-items-center mb--20 mt-3">
       <div class="form__group mr--30">
-        <button type="submit" class="btn btn_log btn-dark">Log in</button>
+        <button type="submit" class="btn btn_log btn-dark">Войти</button>
       </div>
       <!-- <div class="form__group">
         <label class="form__label checkbox-label" for="store_session">
